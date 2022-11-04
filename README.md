@@ -13,7 +13,7 @@ Skilvul. Untuk detail tugas lebih lanjut bisa dilihat pada link berikut [Technic
 
 Production:
 
-- [`https://ersan-todolist-app.netlify.app`](https://ersan-todolist-app.netlify.app)
+- [`https://ersan-todolist-app.vercel.app`](https://ersan-todolist-app.vercel.app)
 
 Local:
 
