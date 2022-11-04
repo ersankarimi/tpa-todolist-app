@@ -11,9 +11,10 @@
     "todolist"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "npm run format && vite",
+    "build": "npm run format && vite build",
+    "preview": "vite preview",
+    "format": "npx prettier --write ."
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
