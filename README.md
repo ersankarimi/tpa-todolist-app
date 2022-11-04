@@ -1,4 +1,4 @@
-# odo List App with React.js & Redux
+# Todo List App with React.js & Redux
 
 Ini adalah Technical Project Assignment 3 dari Stage Front-End Web Dev di
 Skilvul. Untuk detail tugas lebih lanjut bisa dilihat pada link berikut :
