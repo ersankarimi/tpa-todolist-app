@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
-import { Badge, FormInputTodo, TodoItem } from "./components";
+import { Badge, EmptyTodo, FormInputTodo, TodoItem } from "./components";
 
 function App() {
   const { todos } = useSelector((store) => store.todo);
@@ -31,7 +31,7 @@ function App() {
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
-      <section className="w-full">
+      <section className="mt-4 w-full">
         <FormInputTodo>
           <form className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row">
             <input
@@ -83,8 +83,9 @@ function App() {
         animate="visible"
         variants={parentsVariants}
       >
-        <LayoutGroup>
-          <AnimatePresence>
+        <LayoutGroup id="todos-list">
+          <AnimatePresence mode="popLayout">
+            {!todos.length && <EmptyTodo />}
             {todos.length &&
               todos.map((todo) => <TodoItem {...todo} key={todo.todo} />)}
           </AnimatePresence>
