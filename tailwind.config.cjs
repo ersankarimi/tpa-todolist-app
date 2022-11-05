@@ -12,7 +12,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        "main-dark": "url('src/assets/images/hero-dark@90.dba36cdf.jpg')",
+        "main-dark": "url('/src/assets/images/hero-dark@90.dba36cdf.jpg')",
       },
       fontFamily: {
         poppins: "'Poppins', sans-serif",
