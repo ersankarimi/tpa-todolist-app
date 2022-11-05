@@ -1,6 +1,6 @@
 # Todo List App with React.js & Redux
 
-Ini adalah Technical Project Assignment 3 dari Stage Front-End Web Dev di
+Ini adalah Technical Project Assignment 5 dari Stage Front-End Web Dev di
 Skilvul. Untuk detail tugas lebih lanjut bisa dilihat pada link berikut [Technical Project Assignment 5](https://github.com/impactbyte/full-stack-web-assignments/tree/master/TPA-005-frontend)
 
 ![Screenshot 1]()
