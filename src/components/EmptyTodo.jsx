@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function EmptyTodo() {
+export default function EmptyTodo({ inputTodoRef }) {
   return (
     <motion.div
       layout
@@ -59,6 +59,7 @@ export default function EmptyTodo() {
         whileTap={{
           scale: 0.95,
         }}
+        onClick={() => inputTodoRef.current.focus()}
       >
         Add a task
       </motion.button>
