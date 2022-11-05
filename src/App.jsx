@@ -1,21 +1,23 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { LayoutGroup, motion } from "framer-motion";
 
-import { Badge, FormInputTodo } from "./components";
+import { Badge, FormInputTodo, TodoItem } from "./components";
 
 function App() {
+  const { todos } = useSelector((store) => store.todo);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categoryOnHover, setCategoryOnHover] = useState("null");
   const categories = ["All", "Active", "Completed"];
 
   return (
-    <main className="mt-16 flex w-full flex-col items-center gap-8 px-12 text-center">
+    <main className="mt-16 flex w-full flex-col items-center gap-8 px-12 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96">
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
       <section className="w-full">
         <FormInputTodo>
-          <form className="flex w-full flex-col items-center justify-around gap-8 py-4 sm:m-auto sm:w-10/12 md:flex-row lg:w-2/3 xl:w-1/2 2xl:w-2/5">
+          <form className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row">
             <input
               type="text"
               className="w-full appearance-none rounded-md bg-slate-800/20 py-3 px-4 text-slate-100 ring-1 ring-slate-300/10 backdrop-blur-md placeholder:text-sm placeholder:text-slate-400/80 focus:outline-none focus:ring-1 focus:ring-slate-300/40"
@@ -44,8 +46,8 @@ function App() {
         className="flex items-center justify-center gap-4 lg:gap-8"
         onMouseLeave={() => setCategoryOnHover("null")}
       >
-        {categories.map((category) => (
-          <LayoutGroup>
+        <LayoutGroup id="badges-group">
+          {categories.map((category) => (
             <Badge
               key={category}
               setSelectedCategory={setSelectedCategory}
@@ -55,8 +57,14 @@ function App() {
             >
               {category}
             </Badge>
-          </LayoutGroup>
-        ))}
+          ))}
+        </LayoutGroup>
+      </section>
+
+      <section className="mt-16 flex w-full flex-col gap-5  py-4">
+        <LayoutGroup>
+          {todos.length && todos.map((todo) => <TodoItem {...todo} />)}
+        </LayoutGroup>
       </section>
     </main>
   );
