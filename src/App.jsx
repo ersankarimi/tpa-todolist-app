@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { LayoutGroup, motion } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
 import { Badge, FormInputTodo, TodoItem } from "./components";
 
@@ -10,8 +10,24 @@ function App() {
   const [categoryOnHover, setCategoryOnHover] = useState("null");
   const categories = ["All", "Active", "Completed"];
 
+  const parentsVariants = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.5,
+      },
+    },
+    hidden: {
+      opacity: 0,
+    },
+  };
+
   return (
-    <main className="mt-16 flex w-full flex-col items-center gap-8 px-12 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96">
+    <motion.main
+      className="mt-16 flex h-full w-full flex-col items-center gap-8 px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96"
+      layout
+    >
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
@@ -61,12 +77,20 @@ function App() {
         </LayoutGroup>
       </section>
 
-      <section className="mt-16 flex w-full flex-col gap-5  py-4">
+      <motion.section
+        className="mt-16 flex w-full flex-col gap-5 py-4"
+        initial="hidden"
+        animate="visible"
+        variants={parentsVariants}
+      >
         <LayoutGroup>
-          {todos.length && todos.map((todo) => <TodoItem {...todo} />)}
+          <AnimatePresence>
+            {todos.length &&
+              todos.map((todo) => <TodoItem {...todo} key={todo.todo} />)}
+          </AnimatePresence>
         </LayoutGroup>
-      </section>
-    </main>
+      </motion.section>
+    </motion.main>
   );
 }
 
