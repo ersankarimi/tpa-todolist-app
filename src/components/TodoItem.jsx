@@ -1,6 +1,37 @@
-export default function TodoItem({ todo }) {
+import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+
+import { removeTodo } from "../features/todo/todoSlice";
+
+export default function TodoItem({ todo, id }) {
+  const dispatch = useDispatch();
+
+  const itemsVariants = {
+    visible: (i) => ({
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        delay: i * 0.5,
+      },
+    }),
+    hidden: {
+      opacity: 0,
+      transition: {
+        type: "spring",
+      },
+    },
+  };
+
   return (
-    <div className="group flex items-center justify-between rounded-lg border-[1px] border-slate-400/20 p-4 text-left text-slate-100/90 shadow-inner backdrop-blur-sm">
+    <motion.li
+      className="group flex items-center justify-between rounded-lg border-[1px] border-slate-400/20 p-4 text-left text-slate-100/90 shadow-inner backdrop-blur-sm"
+      exit={{ scale: 0.5, opacity: 0 }}
+      transition={{ type: "spring" }}
+      custom={Number(id) / 2}
+      variants={itemsVariants}
+      layout
+    >
       {todo}
       <div className="hidden items-center gap-4 text-slate-300/50 group-hover:flex">
         <svg
@@ -24,6 +55,7 @@ export default function TodoItem({ todo }) {
           strokeWidth={1.5}
           stroke="currentColor"
           className="h-6 w-6 cursor-pointer hover:text-slate-300/80"
+          onClick={() => dispatch(removeTodo(id))}
         >
           <path
             strokeLinecap="round"
@@ -32,6 +64,6 @@ export default function TodoItem({ todo }) {
           />
         </svg>
       </div>
-    </div>
+    </motion.li>
   );
 }
