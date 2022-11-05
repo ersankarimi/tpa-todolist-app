@@ -44,8 +44,8 @@ function App() {
         className="flex items-center justify-center gap-4 lg:gap-8"
         onMouseLeave={() => setCategoryOnHover("null")}
       >
-        <LayoutGroup id="badge-group">
-          {categories.map((category) => (
+        {categories.map((category) => (
+          <LayoutGroup>
             <Badge
               key={category}
               setSelectedCategory={setSelectedCategory}
@@ -55,8 +55,8 @@ function App() {
             >
               {category}
             </Badge>
-          ))}
-        </LayoutGroup>
+          </LayoutGroup>
+        ))}
       </section>
     </main>
   );
