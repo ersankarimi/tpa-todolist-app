@@ -5,7 +5,7 @@ const intialState = {
     {
       id: 1,
       isCompleted: false,
-      todo: "Meet with my friends",
+      todo: "Meet with my friends loreadasd asd as asd asd asd asdas dasd as",
     },
     {
       id: 2,
@@ -18,7 +18,7 @@ const intialState = {
       todo: "Modded kibod",
     },
     {
-      id: 2,
+      id: 4,
       isCompleted: false,
       todo: "Bucin ygy wkwkwkw",
     },
@@ -28,8 +28,17 @@ const intialState = {
 const todoSlice = createSlice({
   name: "todo",
   initialState: intialState,
-  reducers: {},
+  reducers: {
+    removeTodo: (state, actions) => {
+      return {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id !== actions.payload),
+      };
+    },
+  },
 });
 
 const todoReducer = todoSlice.reducer;
+
+export const { removeTodo } = todoSlice.actions;
 export default todoReducer;
