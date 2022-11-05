@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/ersankarimi/tpa-todolist-app.git"
   },
+  "bugs": {
+    "url": "https://github.com/ersankarimi/tpa-todolist-app/issues"
+  },
   "keywords": [
     "todolist"
   ],
