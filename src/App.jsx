@@ -17,7 +17,7 @@ function App() {
           <form className="flex w-full flex-col items-center justify-around gap-8 py-4 md:flex-row">
             <input
               type="text"
-              className="w-full appearance-none rounded-md bg-slate-800/20 py-3 px-4 text-slate-100 ring-1 ring-slate-300/10 backdrop-blur-md placeholder:text-slate-400/40 focus:outline-none focus:ring-1 focus:ring-slate-300/40"
+              className="w-full appearance-none rounded-md bg-slate-800/20 py-3 px-4 text-slate-100 ring-1 ring-slate-300/10 backdrop-blur-md placeholder:text-sm placeholder:text-slate-400/50 focus:outline-none focus:ring-1 focus:ring-slate-300/40"
               name="add-todo"
               id="add-todo"
               placeholder="What to do ?"
