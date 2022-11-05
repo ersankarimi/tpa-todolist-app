@@ -38,8 +38,8 @@ export default function TodoItem({ todo, id }) {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
           stroke="currentColor"
+          strokeWidth={1.5}
           className="h-6 w-6 cursor-pointer hover:text-slate-300/80"
         >
           <path
