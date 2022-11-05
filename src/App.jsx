@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
@@ -6,6 +6,7 @@ import { Badge, EmptyTodo, FormInputTodo, TodoItem } from "./components";
 
 function App() {
   const { todos } = useSelector((store) => store.todo);
+  const inputTodoRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categoryOnHover, setCategoryOnHover] = useState("null");
   const categories = ["All", "Active", "Completed"];
@@ -36,6 +37,7 @@ function App() {
           <form className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row">
             <input
               type="text"
+              ref={inputTodoRef}
               className="w-full appearance-none rounded-md bg-slate-800/20 py-3 px-4 text-slate-100 ring-1 ring-slate-300/10 backdrop-blur-md placeholder:text-sm placeholder:text-slate-400/80 focus:outline-none focus:ring-1 focus:ring-slate-300/40"
               name="add-todo"
               id="add-todo"
@@ -85,7 +87,7 @@ function App() {
       >
         <LayoutGroup id="todos-list">
           <AnimatePresence mode="popLayout">
-            {!todos.length && <EmptyTodo />}
+            {!todos.length && <EmptyTodo inputTodoRef={inputTodoRef} />}
             {todos.length &&
               todos.map((todo) => <TodoItem {...todo} key={todo.todo} />)}
           </AnimatePresence>
