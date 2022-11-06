@@ -11,6 +11,17 @@ export default function ModalDialog() {
   const dispatch = useDispatch();
   const [todoValue, setTodoValue] = useState(todo?.todo || "");
 
+  const variants = {
+    hidden: {
+      opacity: 0.5,
+      scale: 0,
+    },
+    visible: {
+      opacity: [1.2, 1],
+      scale: 1,
+    },
+  };
+
   const handleSaveTodo = (event) => {
     event.preventDefault();
 
@@ -30,7 +41,15 @@ export default function ModalDialog() {
 
   return (
     <dialog className="absolute top-0 right-0 left-0 bottom-0 z-50 flex h-full w-full items-center justify-center bg-slate-800/80 backdrop-blur-[2px]">
-      <div className="flex h-max w-full flex-col gap-12  rounded-xl bg-slate-700/80 p-8 backdrop-blur-[2px] lg:max-w-sm">
+      <motion.div
+        className="flex h-max w-full flex-col gap-12  rounded-xl bg-slate-700/80 p-8 backdrop-blur-[2px] lg:max-w-sm"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+        transition={{
+          type: "spring",
+        }}
+      >
         <div className="border-b-[1px] border-slate-200 pb-1 text-left">
           <h1 className="90 text-xl font-semibold text-slate-100">Edit Todo</h1>
         </div>
@@ -76,7 +95,7 @@ export default function ModalDialog() {
             </motion.button>
           </div>
         </form>
-      </div>
+      </motion.div>
     </dialog>
   );
 }
