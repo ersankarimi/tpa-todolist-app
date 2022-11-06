@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 
 import { removeTodo } from "../features/todo/todoSlice";
 
-export default function TodoItem({ todo, id }) {
+export default function TodoItem({ todo, id, index }) {
   const dispatch = useDispatch();
 
   const itemsVariants = {
     visible: (i) => ({
       opacity: 1,
+      y: 0,
       scale: 1,
       transition: {
         type: "spring",
@@ -17,6 +18,7 @@ export default function TodoItem({ todo, id }) {
     }),
     hidden: {
       opacity: 0,
+      y: 32,
       transition: {
         type: "spring",
       },
@@ -27,9 +29,11 @@ export default function TodoItem({ todo, id }) {
     <motion.li
       className="group flex items-center justify-between rounded-lg border-[1px] border-slate-400/20 p-4 text-left text-slate-100/90 shadow-inner backdrop-blur-sm"
       exit={{ scale: 0.5, opacity: 0 }}
-      transition={{ type: "spring" }}
-      custom={Number(id) / 2}
+      transition={{ type: "spring", duration: 0.5 }}
+      custom={index / 9}
       variants={itemsVariants}
+      initial="hidden"
+      animate="visible"
       layout
     >
       {todo}
