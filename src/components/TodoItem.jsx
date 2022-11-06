@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 
-import { removeTodo } from "../features/todo/todoSlice";
+import { removeTodo, updateTodoCompleted } from "../features/todo/todoSlice";
 
 export default function TodoItem({ todo, id, index, isCompleted }) {
   const dispatch = useDispatch();
+  const [todoIsCompleted, setTodoIsCompleted] = useState(isCompleted);
 
   const itemsVariants = {
     visible: (i) => ({
@@ -26,6 +28,11 @@ export default function TodoItem({ todo, id, index, isCompleted }) {
     },
   };
 
+  const handleUpdateTodoIsCompleted = () => {
+    setTodoIsCompleted(!todoIsCompleted);
+    dispatch(updateTodoCompleted(id));
+  };
+
   return (
     <motion.li
       className="group flex items-center justify-between rounded-lg border-[1px] border-slate-400/20 p-4 text-left text-slate-100/90 shadow-inner backdrop-blur-sm"
@@ -38,11 +45,16 @@ export default function TodoItem({ todo, id, index, isCompleted }) {
       layout
     >
       <div className="flex items-center gap-3">
-        <input
+        <motion.input
           type="checkbox"
+          checked={todoIsCompleted}
+          onChange={handleUpdateTodoIsCompleted}
           name={`${id}-complete`}
           id={`${id}-complete`}
-          className="accent-indigo-600"
+          className="cursor-pointer accent-indigo-600 focus:outline-none focus:outline-1 focus:outline-indigo-600/50"
+          whileHover={{
+            boxShadow: "2px 2px 20px #4f46e5",
+          }}
         />
         <p
           className={classNames({
