@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 
+import { openModalDialog } from "../features/modal/modalSlice";
 import { removeTodo, updateTodoCompleted } from "../features/todo/todoSlice";
 
 export default function TodoItem({ todo, id, index, isCompleted }) {
@@ -73,6 +74,7 @@ export default function TodoItem({ todo, id, index, isCompleted }) {
           stroke="currentColor"
           strokeWidth={1.5}
           className="h-6 w-6 cursor-pointer hover:text-slate-300/80"
+          onClick={() => dispatch(openModalDialog({ todo, id }))}
         >
           <path
             strokeLinecap="round"
