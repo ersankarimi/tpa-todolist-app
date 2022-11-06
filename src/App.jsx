@@ -2,18 +2,28 @@ import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 
-import { Badge, EmptyTodo, FormInputTodo, TodoItem } from "./components";
+import {
+  Badge,
+  EmptyTodo,
+  FormInputTodo,
+  ModalDialog,
+  TodoItem,
+} from "./components";
 
 function App() {
-  const { todos } = useSelector((store) => store.todo);
-  const inputTodoRef = useRef(null);
+  const {
+    todo: { todos },
+    modalDialog: { isOpen },
+  } = useSelector((store) => store);
 
+  const inputTodoRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categoryOnHover, setCategoryOnHover] = useState("null");
   const categories = ["All", "Active", "Completed"];
 
   return (
     <main className="mt-16 flex w-full flex-col items-center gap-8 overflow-auto px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96">
+      {isOpen && <ModalDialog />}
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
