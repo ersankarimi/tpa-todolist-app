@@ -17,6 +17,7 @@ function App() {
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
+
       <section className="mt-4 w-full">
         <FormInputTodo inputTodoRef={inputTodoRef} />
       </section>
