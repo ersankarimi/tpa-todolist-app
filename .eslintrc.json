@@ -48,6 +48,7 @@
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "no-param-reassign": "off"
   }
 }
