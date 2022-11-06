@@ -5,7 +5,7 @@
 
 @layer base {
   body {
-    @apply relative flex min-h-screen flex-col bg-main-dark bg-cover object-cover font-poppins text-white;
+    @apply overflow-x-hidden bg-main-dark bg-cover object-cover font-poppins text-white;
   }
   #root {
     @apply flex h-full flex-1  justify-center;
