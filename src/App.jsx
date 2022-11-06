@@ -1,40 +1,51 @@
 import { useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 
+import { addTodo } from "./features/todo/todoSlice";
 import { Badge, EmptyTodo, FormInputTodo, TodoItem } from "./components";
 
 function App() {
   const { todos } = useSelector((store) => store.todo);
+  const dispatch = useDispatch();
   const inputTodoRef = useRef(null);
+  const [newTodoValue, setNewTodoValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categoryOnHover, setCategoryOnHover] = useState("null");
   const categories = ["All", "Active", "Completed"];
 
-  const parentsVariants = {
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.5,
-      },
-    },
-    hidden: {
-      opacity: 0,
-    },
+  const handleAddNewTodo = (event) => {
+    event.preventDefault();
+    if (newTodoValue.length < 3) {
+      inputTodoRef.current.classList.add("animate-shaking");
+
+      setTimeout(() => {
+        inputTodoRef.current.classList.remove("animate-shaking");
+      }, 500);
+      return;
+    }
+
+    const payload = {
+      id: Date.now(),
+      isCompleted: false,
+      todo: newTodoValue,
+    };
+
+    dispatch(addTodo(payload));
+    setNewTodoValue("");
   };
 
   return (
-    <motion.main
-      className="mt-16 flex h-full w-full flex-col items-center gap-8 px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96"
-      layout
-    >
+    <main className="mt-16 flex w-full flex-col items-center gap-8 overflow-auto px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96">
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
       </h1>
       <section className="mt-4 w-full">
         <FormInputTodo>
-          <form className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row">
+          <form
+            className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row"
+            onSubmit={handleAddNewTodo}
+          >
             <input
               type="text"
               ref={inputTodoRef}
@@ -43,6 +54,8 @@ function App() {
               id="add-todo"
               placeholder="What to do ?"
               autoComplete="off"
+              value={newTodoValue}
+              onChange={(event) => setNewTodoValue(event.target.value)}
             />
             <motion.button
               type="submit"
@@ -79,21 +92,16 @@ function App() {
         </LayoutGroup>
       </section>
 
-      <motion.section
-        className="mt-16 flex w-full flex-col gap-5 py-4"
-        initial="hidden"
-        animate="visible"
-        variants={parentsVariants}
-      >
-        <LayoutGroup id="todos-list">
-          <AnimatePresence mode="popLayout">
-            {!todos.length && <EmptyTodo inputTodoRef={inputTodoRef} />}
-            {todos.length &&
-              todos.map((todo) => <TodoItem {...todo} key={todo.todo} />)}
-          </AnimatePresence>
-        </LayoutGroup>
-      </motion.section>
-    </motion.main>
+      <section className="mt-16 flex w-full flex-col gap-5 py-2">
+        {todos.length < 1 && <EmptyTodo inputTodoRef={inputTodoRef} />}
+        <AnimatePresence mode="sync">
+          {todos.length > 0 &&
+            todos.map((todo, index) => (
+              <TodoItem {...todo} index={index} key={todo.id} />
+            ))}
+        </AnimatePresence>
+      </section>
+    </main>
   );
 }
 
