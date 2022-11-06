@@ -31,7 +31,7 @@ export default function FormInputTodo({ inputTodoRef }) {
 
   return (
     <form
-      className="flex w-full flex-col items-center justify-around gap-8 py-4  md:flex-row"
+      className="flex w-full flex-col items-center justify-around gap-6 py-4 md:flex-row"
       onSubmit={handleAddNewTodo}
     >
       <input
