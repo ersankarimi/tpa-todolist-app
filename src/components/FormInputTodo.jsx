@@ -12,6 +12,7 @@ export default function FormInputTodo({ inputTodoRef }) {
     event.preventDefault();
     if (newTodoValue.length < 3) {
       inputTodoRef.current.classList.add("animate-shaking");
+      inputTodoRef.current.focus();
 
       setTimeout(() => {
         inputTodoRef.current.classList.remove("animate-shaking");
