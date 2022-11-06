@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
+import classNames from "classnames";
 import { motion } from "framer-motion";
 
 import { removeTodo } from "../features/todo/todoSlice";
 
-export default function TodoItem({ todo, id, index }) {
+export default function TodoItem({ todo, id, index, isCompleted }) {
   const dispatch = useDispatch();
 
   const itemsVariants = {
@@ -36,7 +37,22 @@ export default function TodoItem({ todo, id, index }) {
       animate="visible"
       layout
     >
-      {todo}
+      <div className="flex items-center gap-3">
+        <input
+          type="checkbox"
+          name={`${id}-complete`}
+          id={`${id}-complete`}
+          className="accent-indigo-600"
+        />
+        <p
+          className={classNames({
+            "text-slate-200/50 line-through": isCompleted === true,
+            "text-slate-100/90 no-underline": isCompleted === false,
+          })}
+        >
+          {todo}
+        </p>
+      </div>
       <div className="hidden items-center gap-4 text-slate-300/50 group-hover:flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
