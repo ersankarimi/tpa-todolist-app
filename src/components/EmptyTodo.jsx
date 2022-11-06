@@ -1,15 +1,26 @@
 import { motion } from "framer-motion";
 
 export default function EmptyTodo({ inputTodoRef }) {
+  const variants = {
+    hidden: {
+      opacity: 0.5,
+      scale: 0,
+    },
+    visible: {
+      opacity: [1.2, 1],
+      scale: 1,
+    },
+  };
   return (
     <motion.div
       layout
-      className="mt-2 flex flex-col items-center justify-center gap-8"
-      animate={{
-        opacity: 1,
-      }}
+      className="flex flex-col items-center justify-center gap-6"
+      variants={variants}
+      initial="hidden"
+      animate="visible"
       exit={{
         opacity: 0,
+        scale: 0,
       }}
       transition={{
         type: "spring",
