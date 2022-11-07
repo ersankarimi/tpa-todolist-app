@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 export default function CategoryButton({
   children,
@@ -50,3 +51,11 @@ export default function CategoryButton({
     </button>
   );
 }
+
+CategoryButton.propTypes = {
+  children: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onHover: PropTypes.bool.isRequired,
+  setSelectedCategory: PropTypes.func.isRequired,
+  setCategoryOnHover: PropTypes.func.isRequired,
+};

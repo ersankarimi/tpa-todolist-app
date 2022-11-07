@@ -41,7 +41,7 @@ function App() {
       className={classNames(
         "mt-16 flex w-full flex-col items-center gap-8 px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96",
         {
-          "max-h-[80vh] overflow-hidden": isOpen === true,
+          "max-h-screen overflow-hidden lg:max-h-[80vh]": isOpen === true,
           "h-auto": isOpen === false,
         }
       )}

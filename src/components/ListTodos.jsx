@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 import { openModalDialog } from "../features/modal/modalSlice";
 import { removeTodo, updateTodoCompleted } from "../features/todo/todoSlice";
@@ -102,7 +103,10 @@ function TodoItem({ todo, id, index, isCompleted }) {
   );
 }
 
-export default function ListTodos({ todos, filterTodosByCategoryValue }) {
+export default function ListTodos({
+  todos,
+  filterTodosByCategoryValue = "all",
+}) {
   return todos.map((todo, index) => {
     if (filterTodosByCategoryValue === "completed") {
       return (
@@ -121,3 +125,14 @@ export default function ListTodos({ todos, filterTodosByCategoryValue }) {
     return <TodoItem {...todo} index={index} key={todo.id} />;
   });
 }
+
+TodoItem.propTypes = {
+  todo: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  isCompleted: PropTypes.bool.isRequired,
+};
+ListTodos.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.object.isRequired),
+  filterTodosByCategoryValue: PropTypes.string.isRequired,
+};
