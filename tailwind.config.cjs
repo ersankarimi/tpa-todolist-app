@@ -17,6 +17,29 @@ module.exports = {
       fontFamily: {
         poppins: "'Poppins', sans-serif",
       },
+      animation: {
+        shaking: "shake 0.8s ease-in-out",
+      },
+      keyframes: {
+        shake: {
+          "10%, 90%": {
+            transform: "translate3d(-3px, 0, 0)",
+            outline: "1px solid #f87171",
+          },
+          "20%, 80%": {
+            transform: "translate3d(4px, 0, 0)",
+            outline: "1px solid #f87171",
+          },
+          "30%, 50%, 70%": {
+            transform: "translate3d(-5px, 0, 0)",
+            outline: "1px solid #f87171",
+          },
+          "40%, 60%": {
+            transform: "translate3d(5px, 0, 0)",
+            outline: "1px solid #f87171",
+          },
+        },
+      },
     },
   },
 

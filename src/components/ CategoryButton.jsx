@@ -1,18 +1,27 @@
+import { useSearchParams } from "react-router-dom";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 
-export default function Badge({
+export default function CategoryButton({
   children,
   setSelectedCategory,
   setCategoryOnHover,
   isActive,
   onHover,
 }) {
+  const [, setSearchParams] = useSearchParams();
+
+  const handleClick = () => {
+    setSelectedCategory(children);
+    setSearchParams({
+      filter: children.toLowerCase(),
+    });
+  };
   return (
     <button
       type="button"
       className="relative flex flex-col items-center rounded-lg ring-indigo-700 focus:outline-none focus:ring-2"
-      onClick={() => setSelectedCategory(children)}
+      onClick={handleClick}
       onMouseEnter={() => setCategoryOnHover(children)}
     >
       <div
