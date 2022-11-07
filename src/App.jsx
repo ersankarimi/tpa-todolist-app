@@ -13,7 +13,7 @@ import {
 
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const filterTodoByCategoryValue = useMemo(() => {
+  const filterTodosByCategoryValue = useMemo(() => {
     return searchParams.get("filter");
   }, [searchParams.get("filter")]);
 
@@ -71,7 +71,7 @@ function App() {
           {todos.length > 0 && (
             <ListTodos
               todos={todos}
-              filterTodoByCategoryValue={filterTodoByCategoryValue}
+              filterTodosByCategoryValue={filterTodosByCategoryValue}
             />
           )}
         </AnimatePresence>
