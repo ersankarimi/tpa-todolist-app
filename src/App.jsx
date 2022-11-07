@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import classNames from "classnames";
 import { AnimatePresence, LayoutGroup } from "framer-motion";
 
 import {
@@ -36,7 +37,15 @@ function App() {
   }, []);
 
   return (
-    <main className="mt-16 flex w-full flex-col items-center gap-8 overflow-auto px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96">
+    <main
+      className={classNames(
+        "mt-16 flex w-full flex-col items-center gap-8 px-12 pb-20 text-center sm:px-32 lg:px-44 xl:px-64 2xl:w-3/4 2xl:px-96",
+        {
+          "max-h-[80vh] overflow-hidden": isOpen === true,
+          "h-auto": isOpen === false,
+        }
+      )}
+    >
       {isOpen && <ModalDialog />}
       <h1 className="text-xl font-bold text-slate-100 sm:text-3xl lg:text-4xl">
         What&apos;s the plan for today ?
