@@ -11,13 +11,6 @@ export default function CategoryButton({
   onHover,
 }) {
   const [, setSearchParams] = useSearchParams();
-  console.log({
-    children,
-    setSelectedCategory,
-    setCategoryOnHover,
-    isActive,
-    onHover,
-  });
 
   const handleClick = () => {
     setSelectedCategory(children);
