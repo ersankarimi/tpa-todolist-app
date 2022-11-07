@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 import { addTodo } from "../features/todo/todoSlice";
 
@@ -61,3 +62,8 @@ export default function FormInputTodo({ inputTodoRef }) {
     </form>
   );
 }
+
+FormInputTodo.propTypes = {
+  inputTodoRef: PropTypes.objectOf(PropTypes.instanceOf(HTMLInputElement))
+    .isRequired,
+};

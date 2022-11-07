@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
 
 export default function EmptyTodo({ inputTodoRef }) {
   const variants = {
@@ -77,3 +78,8 @@ export default function EmptyTodo({ inputTodoRef }) {
     </motion.div>
   );
 }
+
+EmptyTodo.propTypes = {
+  inputTodoRef: PropTypes.objectOf(PropTypes.instanceOf(HTMLInputElement))
+    .isRequired,
+};
