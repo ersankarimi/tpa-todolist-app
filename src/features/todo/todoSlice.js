@@ -1,28 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const intialState = {
-  todos: [
-    {
-      id: 1,
-      isCompleted: false,
-      todo: "Meet with my friends loreadasd asd as asd asd asd asdas dasd as",
-    },
-    {
-      id: 2,
-      isCompleted: false,
-      todo: "Ke panti",
-    },
-    {
-      id: 3,
-      isCompleted: false,
-      todo: "Modded kibod",
-    },
-    {
-      id: 4,
-      isCompleted: false,
-      todo: "Bucin ygy wkwkwkw",
-    },
-  ],
+  todos: [],
 };
 
 const todoSlice = createSlice({
