@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { openModalDialog } from "../features/modal/modalSlice";
 import { removeTodo, updateTodoCompleted } from "../features/todo/todoSlice";
 
-export default function TodoItem({ todo, id, index, isCompleted }) {
+function TodoItem({ todo, id, index, isCompleted }) {
   const dispatch = useDispatch();
   const [todoIsCompleted, setTodoIsCompleted] = useState(isCompleted);
 
@@ -100,4 +100,24 @@ export default function TodoItem({ todo, id, index, isCompleted }) {
       </div>
     </motion.li>
   );
+}
+
+export default function ListTodos({ todos, filterTodosByCategoryValue }) {
+  return todos.map((todo, index) => {
+    if (filterTodosByCategoryValue === "completed") {
+      return (
+        todo.isCompleted && <TodoItem {...todo} index={index} key={todo.id} />
+      );
+    }
+
+    if (filterTodosByCategoryValue === "active") {
+      return (
+        todo.isCompleted !== true && (
+          <TodoItem {...todo} index={index} key={todo.id} />
+        )
+      );
+    }
+
+    return <TodoItem {...todo} index={index} key={todo.id} />;
+  });
 }
